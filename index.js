@@ -1,16 +1,11 @@
 var fs = require('fs');
-var StatMode = require('stat-mode');
 
-fs.readFile('./tekst.txt', 'utf-8',  function(err, data) {
-	console.log(data)
+fs.readdir('.', 'utf-8', function(err, files) {
+	console.log(files);
+	fs.writeFile('./tekst.txt', files, function(err, data) {
+		if (err) throw err;
+	});
 });
 
-fs.appendFile('./tekst.txt', 'Tekst, który zapiszemy w pliku tekst.txt', function(err){
-	if (err) throw err;
-	console.log('Zapisano!');
-});
 
-fs.stat('./cat.jpg', function(err, stats) {
-	var statMode = new StatMode(stats);
-	console.log(statMode.toString());
-});
+//trzeba po console log to wstawic
